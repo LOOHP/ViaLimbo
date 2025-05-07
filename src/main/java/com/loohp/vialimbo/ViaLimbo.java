@@ -51,6 +51,7 @@ public class ViaLimbo extends LimboPlugin implements Listener {
             String ip = serverProperties.getServerIp();
             int port = serverProperties.getServerPort();
             boolean bungeecord = serverProperties.isBungeecord() || serverProperties.isBungeeGuard();
+            double tickrate = serverProperties.getDefinedTicksPerSecond();
 
             Field portField = ServerProperties.class.getDeclaredField("serverPort");
             portField.setAccessible(true);
@@ -63,10 +64,10 @@ public class ViaLimbo extends LimboPlugin implements Listener {
 
             Limbo.getInstance().getEventsManager().registerEvents(this, new ViaLimboListener());
 
-            Limbo.getInstance().getScheduler().runTask(this, () -> {
+            Limbo.getInstance().getScheduler().runTaskLater(this, () -> {
                 int limboPort = Limbo.getInstance().getServerConnection().getServerSocket().getLocalPort();
                 startViaProxy(ip, port, minecraftVersion, limboPort, bungeecord);
-            });
+            }, (long) tickrate);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
