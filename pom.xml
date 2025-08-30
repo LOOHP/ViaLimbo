@@ -26,7 +26,7 @@
 
     <groupId>com.loohp</groupId>
     <artifactId>ViaLimbo</artifactId>
-    <version>1.1.2</version>
+    <version>1.1.3</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -37,7 +37,6 @@
     <build>
         <defaultGoal>clean install</defaultGoal>
         <sourceDirectory>src/main/java</sourceDirectory>
-        <testSourceDirectory>src/test/java</testSourceDirectory>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -116,13 +115,13 @@
         <dependency>
             <groupId>com.loohp</groupId>
             <artifactId>Limbo</artifactId>
-            <version>0.7.14-ALPHA</version>
+            <version>0.7.15-ALPHA</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>net.raphimc</groupId>
             <artifactId>ViaProxy</artifactId>
-            <version>3.4.3</version>
+            <version>3.4.4</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
