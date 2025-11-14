@@ -175,6 +175,28 @@ public class ViaLimbo extends LimboPlugin implements Listener {
             io.netty.channel.Channel channel = event.getChannel();
             if (initializedChannels.add(channel)) {
                 ProxyConnection proxyConnection = ProxyConnection.fromChannel(channel);
+
+                try {
+                    if (proxyConnection.getServerVersion() == null) {
+                        Field serverVersionField = null;
+                        Class<?> cls = proxyConnection.getClass();
+                        while (cls != null) {
+                            try {
+                                serverVersionField = cls.getDeclaredField("serverVersion");
+                                break;
+                            } catch (NoSuchFieldException ignored) {
+                                cls = cls.getSuperclass();
+                            }
+                        }
+                        if (serverVersionField != null) {
+                            serverVersionField.setAccessible(true);
+                            serverVersionField.set(proxyConnection, ProtocolTranslator.AUTO_DETECT_PROTOCOL);
+                        }
+                    }
+                } catch (Exception e) {
+                    Limbo.getInstance().getConsole().sendMessage("[ViaLimbo] Warning: failed to set default serverVersion for ProxyConnection: " + e.getMessage());
+                }
+
                 SocketAddress socketAddress = proxyConnection.getC2P().remoteAddress();
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                 DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
