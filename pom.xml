@@ -26,7 +26,7 @@
 
     <groupId>com.loohp</groupId>
     <artifactId>ViaLimbo</artifactId>
-    <version>2026.1.0</version>
+    <version>2026.1.1</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -122,7 +122,7 @@
         <dependency>
             <groupId>net.raphimc</groupId>
             <artifactId>ViaProxy</artifactId>
-            <version>3.4.10</version>
+            <version>3.4.11-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
