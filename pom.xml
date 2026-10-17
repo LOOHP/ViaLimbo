@@ -44,7 +44,15 @@
                 <filtering>true</filtering>
                 <excludes>
                     <exclude>**/*.java</exclude>
+                    <exclude>log4j2.xml</exclude>
                 </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>log4j2.xml</include>
+                </includes>
             </resource>
         </resources>
 
@@ -63,6 +71,14 @@
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
                             </transformers>
+                            <filters>
+                                <filter>
+                                    <artifact>net.raphimc:ViaProxy</artifact>
+                                    <excludes>
+                                        <exclude>log4j2.xml</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
                             <shadedArtifactAttached>false</shadedArtifactAttached>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
                         </configuration>
